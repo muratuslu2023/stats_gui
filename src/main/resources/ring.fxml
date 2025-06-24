@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.shape.Arc?>
+<?import javafx.scene.shape.Circle?>
+<?import javafx.scene.text.Font?>
+
+
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="274.0" prefWidth="333.0" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <Arc fill="DODGERBLUE" layoutX="167.0" layoutY="137.0" length="270.0" radiusX="110.0" radiusY="110.0" stroke="BLACK" strokeType="INSIDE" type="ROUND" />
+      <Circle fill="#575b5e" layoutX="167.0" layoutY="137.0" radius="100.0" stroke="BLACK" strokeType="INSIDE" />
+      <Label layoutX="141.0" layoutY="123.0" text="Hello">
+         <font>
+            <Font size="24.0" />
+         </font>
+      </Label>
+   </children>
+</Pane>
