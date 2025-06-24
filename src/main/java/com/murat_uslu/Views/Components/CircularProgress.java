@@ -1,6 +1,5 @@
 package com.murat_uslu.Views.Components;
 
-import javafx.geometry.Pos;
 import javafx.scene.control.Label;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
@@ -15,9 +14,6 @@ import javafx.scene.text.TextAlignment;
 public class CircularProgress {
     private double paneWidth = 340.0;
     private double paneHeight = 340.0;
-
-    private double arcLayoutX = paneWidth / 2.0;
-    private double arcLayoutY = paneHeight / 2.0;
 
     private Pane pane;
     private Arc arc;
@@ -47,25 +43,31 @@ public class CircularProgress {
     }
 
     public CircularProgress(double progress, String progressText){
-        pane = new StackPane(); // PANE
+        pane = new StackPane();
         circle = new Circle();
         circle2 = new Circle();
         arc = new Arc();
         label = new Label();
+
         labelFont = new Font("Arial", 24);
         label.setTextAlignment(TextAlignment.CENTER);
+
+        configureElements();
         setProgress(progress, progressText);
     }
 
     private void adjustProgress(){
-        pane.getChildren().clear();
-
         if(progress > 90.0){
             arcColor = Color.rgb(206,25,25,1);
         }else{
             arcColor = Color.rgb(38, 78, 210, 1);
         }
+        arc.setLength(-(progress / 100.0) * 360.0);
+        arc.setStroke(arcColor);// Clockwise
+        label.setText(progressText);
+    }
 
+    private void configureElements(){
         circleColor = new Color(.5, .5, .5, 1);
         circle2Color = new Color(.5, .5, .5, .5);
 
@@ -79,7 +81,6 @@ public class CircularProgress {
         circle.setCenterX(0.0);
         circle.setCenterY(0.0);
 
-
         circle2.setRadius(120.0);
         circle2.setFill(circle2Color);
         circle2.setStroke(null);
@@ -88,7 +89,7 @@ public class CircularProgress {
         circle2.setCenterY(0.0);
 
         Pane arcContainer = new Pane();
-        arcContainer.setPrefSize(220.0, 220.0); // Fixed size container
+        arcContainer.setPrefSize(220.0, 220.0);
         arcContainer.setMaxSize(220.0, 220.0);
         arcContainer.setMinSize(220.0, 220.0);
 
@@ -103,8 +104,8 @@ public class CircularProgress {
         arc.getStrokeDashArray().clear();
         arc.setStrokeLineCap(StrokeLineCap.ROUND);
 
-        arc.setCenterX(110.0); // Half of container width
-        arc.setCenterY(110.0); // Half of container height
+        arc.setCenterX(110.0);
+        arc.setCenterY(110.0);
 
         arcContainer.getChildren().add(arc);
 
@@ -112,6 +113,7 @@ public class CircularProgress {
         label.setFont(labelFont);
 
         pane.getChildren().addAll(circle, circle2, arcContainer, label);
+
     }
 
     public StackPane getProgressPane(String labelText) {
@@ -125,8 +127,8 @@ public class CircularProgress {
 
     public void setProgress(double progress, String progressText) {
         setProgressText(progressText);
-        adjustProgress();
         this.progress = progress;
+        adjustProgress();
     }
 
     public double getProgress() {
